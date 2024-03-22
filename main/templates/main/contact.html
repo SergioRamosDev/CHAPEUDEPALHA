@@ -1,75 +1,25 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block content %}    
+<div class="container">
+    <h1>Contact Us</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">name</label>
+            <input type="name" class="form-control" id="name" name="name" placeholder="Fulano">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+        </div>
+        <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+        </div>
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container mt-5">
-        <h2>Formulário de Informações</h2>
-        <form>
-            <div class="form-group">
-                <label for="nome">Nome:</label>
-                <input type="text" class="form-control" id="nome" placeholder="Nome">
-            </div>
-            <div class="form-group">
-                <label for="cpf">CPF:</label>
-                <input type="text" class="form-control" id="cpf" placeholder="CPF">
-            </div>
-            <div class="form-group">
-                <label for="pis">PIS:</label>
-                <input type="text" class="form-control" id="pis" placeholder="PIS">
-            </div>
-            <div class="form-group">
-                <label for="identidade">Identidade:</label>
-                <input type="text" class="form-control" id="identidade" placeholder="Identidade">
-            </div>
-            <div class="form-group">
-                <label for="carteira_pesca">Número de Carteira da Pesca:</label>
-                <input type="text" class="form-control" id="carteira_pesca" placeholder="Número de Carteira da Pesca">
-            </div>
-            <div class="form-group">
-                <label for="carteira_trabalho">Número de Carteira de Trabalho:</label>
-                <input type="text" class="form-control" id="carteira_trabalho" placeholder="Número de Carteira de Trabalho">
-            </div>
-            <div class="form-group">
-                <label for="nome_pai">Nome do Pai:</label>
-                <input type="text" class="form-control" id="nome_pai" placeholder="Nome do Pai">
-            </div>
-            <div class="form-group">
-                <label for="nome_mae">Nome da Mãe:</label>
-                <input type="text" class="form-control" id="nome_mae" placeholder="Nome da Mãe">
-            </div>
-            <div class="form-group">
-                <label for="quantidade_filhos">Quantidade de Filhos:</label>
-                <input type="number" class="form-control" id="quantidade_filhos" placeholder="Quantidade de Filhos">
-            </div>
-            <div class="form-group">
-                <label for="escolaridade">Escolaridade:</label>
-                <select class="form-control" id="escolaridade">
-                    <option>Ensino Fundamental Incompleto</option>
-                    <option>Ensino Fundamental Completo</option>
-                    <option>Ensino Médio Incompleto</option>
-                    <option>Ensino Médio Completo</option>
-                    <option>Ensino Superior Incompleto</option>
-                    <option>Ensino Superior Completo</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
-
-
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
 </div>
-{% endblock %}
+
+{% endblock  %}

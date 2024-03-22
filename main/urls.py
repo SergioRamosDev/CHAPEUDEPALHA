@@ -1,15 +1,13 @@
 from django.urls import path
 from . import views
-from .views import BeneficiarioCreateView, BeneficiarioUpdateView
+from .views import AlunoUpdateView
 
 urlpatterns = [
-    path('', views.Beneficiarioview, name='beneficiario-lista'),
-    
-    path('beneficiariosID/<int:id>', views.BeneficiarioIDview, name='beneficiario-detalhe'),
+    path('',views.alunoView, name='aluno-lista'),
+    path('alunoID/<int:id>', views.alunoIDview, name='aluno-detalhe'),
+    path('contact', views.contact_view, name='contact_view'),
+    path('aluno/create/', views.aluno_create_view, name='aluno-create'),
+    path('aluno/<int:pk>/update/', AlunoUpdateView.as_view(), name='aluno-update'),
+    path('delete/<int:id>/', views.deleteAluno, name='delete_aluno'),
 
-    path('contact', views.contact_view, name='beneficiario-contact'),
-
-    path('beneficiario/create/', BeneficiarioCreateView.as_view(), name='beneficiario-create'),
-
-    path('beneficiario/<int:pk>/update/', views.BeneficiarioUpdateView.as_view(), name='beneficiario-update'),
-]
+] 

@@ -1,35 +1,54 @@
-from django.shortcuts import render
-from .models import Beneficiario
+from .models import Aluno
+from .forms import AlunoForm
 from django.http import HttpResponse
-from django.shortcuts import render, get_list_or_404
-from django.views.generic import CreateView
-from django.views.generic import UpdateView
-
-class BeneficiarioCreateView(CreateView):
-    model = Beneficiario
-    fields = '__all__'  # Ou especifique os campos que deseja incluir no formulário
-
-class BeneficiarioUpdateView(UpdateView):
-    model = Beneficiario
-    fields = '__all__'
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse,reverse_lazy
+from django.views.generic.edit import UpdateView, CreateView
 
 
-def Beneficiarioview(request):
-    Beneficiario_list = Beneficiario.objects.all()
-    return render(request, 'main/beneficiarios.html', {'beneficiario_list': Beneficiario_list})
+def alunoView(request):
+    alunos_list = Aluno.objects.all()
+    return render(request, 'main/alunos.html', {'alunos_list': alunos_list})
 
-def BeneficiarioIDview(request, id):
-    Beneficiario = get_list_or_404(Beneficiario, pk=id)
-    print(Beneficiario)
-    return render(request, 'main/BeneficiarioID.html', {'Beneficiario':Beneficiario})
+
+def alunoIDview(request, id):
+    aluno = get_object_or_404(Aluno, pk=id)
+    print(aluno)
+    return render(request, 'main/alunoID.html', {'aluno': aluno})
+
 
 def contact_view(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
         message = request.POST.get('message')
-        print('name:', name)
-        print('email:',email)
-        print('message:',message)
+        print(name)
+        print(email)
+        print(message)
     return render(request, 'main/contact.html')
+
+def aluno_create_view(request):
+    if request.method == 'POST':
+        form = AlunoForm(request.POST)
+        if form.is_valid():
+            aluno = form.save(commit=False)
+            aluno.user = request.user
+            aluno.save()
+            return redirect(reverse('aluno-lista'))
+    else:
+        form = AlunoForm()
+
+    return render(request, 'main/aluno_form.html', {'form': form})
+
+
+class AlunoUpdateView(UpdateView):
+    model = Aluno
+    form_class = AlunoForm
+    template_name = 'main/aluno_form.html'
+    success_url = reverse_lazy('aluno-lista')
+
+def deleteAluno(request,id):
+    aluno = get_object_or_404(Aluno, pk=id)
+    aluno.delete()
+    return redirect('/')
 

@@ -1,8 +1,15 @@
-.fas .fa-edit {
-    color: #13c43f;
+.fas.fa-edit {
+    color: #7707c2;
     cursor: pointer;
     margin: 5px;
     font-size: 20px;
     float: right;
-
 }
+
+    .fas.fa-trash {
+        color: #7707c2;
+        cursor: pointer;
+        margin: 5px;
+        font-size: 20px;
+        float: right;
+    }
